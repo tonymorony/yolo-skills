@@ -29,7 +29,7 @@ Done when: every cell holds an outcome, an open Open Question with its **Until t
 
 ## 3. Draft
 
-Use the project's spec format (the one sibling specs follow; fall back to Overview, User Stories, Business Rules, Edge Cases, Open Questions). Match the sibling specs' voice.
+Use the project's spec format (the one sibling specs follow; fall back to Overview, User Stories, Business Rules, Edge Cases, Open Questions). Write every line under the writing rules at the end of this file.
 
 - Every sentence traces to the ledger or a user decision. A sentence with no source becomes an Open Question instead. This is **provenance**: the spec states only what someone decided.
 - Every rule is falsifiable: a reader can describe a case that breaks it.
@@ -45,7 +45,7 @@ Done when: the grid maps onto rule and edge-case IDs with no orphan cell, and no
 Hand the draft to fresh subagents with no drafting context, so they read it as a reviewer does. Use the prompt in [`RED-TEAM.md`](RED-TEAM.md) and the classes in [`DEFECTS.md`](DEFECTS.md), one subagent per lens, in parallel (with no subagents available, run the lenses one after another in a clean pass):
 
 - **Logic**: missing state, collision, two readings, formula, validation outcome.
-- **Language and links**: term drift, ripple, overclaim, ownership.
+- **Language and links**: term drift, plain words, ripple, overclaim, ownership.
 - **Outside world**: inference leak, design mismatch, unchecked code claim, unchecked source.
 
 Triage every finding into one verdict: **defect** (fix or ask), **tracked** (an Open Question already holds it; point to it), **design** (a design detail; note it for the designer), or **unsupported** (drop it, with the reason). Verify each defect yourself against the spec text before you keep it.
@@ -90,3 +90,17 @@ An open question is a hole a reviewer can attack, so each one is either closed o
 - **Open**: each carries an owner (a role, never a person), **Blocks** (the first build, a named later spec or ticket, or nothing) and **Until then** (the behaviour this spec states meanwhile, as a rule ID). A fenced question leaves no grid cell empty.
 - **Blocks the first build**: such a question stays in the grill until it is decided; it never reaches the gate as open.
 - **Owned elsewhere**: a question a later spec owns is a pointer to that spec's ticket. At the gate, draft a note for that ticket; post it after the user approves.
+
+## Writing
+
+Every text this skill produces follows Simplified Technical English (ASD-STE100): the spec, its glossary rows, the replies, the commit messages, the pull request text, the ticket notes and the reports to the user.
+
+- Use the active voice and simple tenses: present, past and future.
+- Give one idea in each sentence, in 20 words or fewer. Keep paragraphs to six sentences or fewer.
+- Use the same word for the same idea every time. Use plain words: no idiom, slang, metaphor or jargon.
+- **Describe**: say what a thing does, what it costs, and what it cannot do. Leave praise and blame out.
+- Define a term before its second use. Take domain words from the project glossary, and read it before naming a domain concept.
+- Keep technical items exact: file paths, rule IDs, identifiers, commands, numbers, prices and quoted text.
+- Text a person reads in the app also follows the project's copy rules. In a spec, write the rule the copy must meet; the exact words are the design's call.
+
+In an Argus project: the glossary is `docs/glossary.md`, and a new term goes through the term-lifecycle flow before it enters the spec. The copy rules are the Copy constraints in `.argus/project.md`. Specs live in `docs/specs/`. A table cell (a rule, a rationale, an edge case, an open question) obeys the same sentence rules as prose. Each rule cell holds one constraint, and its reason goes in the Rationale cell.

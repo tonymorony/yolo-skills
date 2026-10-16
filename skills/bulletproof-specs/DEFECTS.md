@@ -51,6 +51,13 @@ The spec and the current design disagree: an element with no rule, a rule with n
 - Check: walk every element of every frame. Does each map to a rule? Does each rule have an element? Do the labels match the spec's words? Record the spec as the decision; list design changes for the designer.
 - Shape: "The design draws one column per pay band with a count above it; the spec says nothing of counts."
 
+## Plain words
+
+A sentence breaks the writing rules in `SKILL.md`: over 20 words, more than one idea, passive voice, an idiom or metaphor, a judgement word ("simple", "clean", "obviously"), or a synonym for a word used earlier.
+
+- Check: does each sentence give one idea in 20 words or fewer, in the active voice? Does each idea keep one word throughout? Does each rule cell hold one constraint?
+- Shape: "The threshold, which is optional and only shown when the member is open, is cleared if the status is later changed to not looking, keeping data clean." (one sentence, four ideas, a judgement word)
+
 ## Ripple
 
 An edit changed a rule, term or number, and another rule, edge case, open question or sibling spec still says the old thing.

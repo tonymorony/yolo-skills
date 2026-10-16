@@ -30,7 +30,7 @@ name that OQ instead of raising it again. End with the list of rule IDs you chec
 Lenses:
 
 - **Logic**: Missing state, Collision, Two readings, Formula, Validation outcome.
-- **Language and links**: Term drift, Ripple, Overclaim, Ownership.
+- **Language and links**: Term drift, Plain words, Ripple, Overclaim, Ownership.
 - **Outside world**: Inference leak, Design mismatch, Code claim, Source claim.
 
 The closing list of checked rule IDs is the completion check: a lens that skipped a rule runs again on that rule.

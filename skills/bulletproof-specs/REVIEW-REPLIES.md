@@ -32,7 +32,7 @@ The user decides product questions themselves; write the reply as the decision. 
 - `New OQ-n asks this for <owner>.`
 - One fix that answers several threads: the same reply in each thread.
 
-Keep replies short and plain. A phrase the user asks for in one reply belongs to that reply only.
+Write replies under the writing rules in `SKILL.md`. A phrase the user asks for in one reply belongs to that reply only.
 
 ## Gate
 
