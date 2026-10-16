@@ -28,14 +28,14 @@ A phrase reads two ways: a time window, a quantifier (none, each, all, once), "r
 One word for two ideas, a synonym for a glossary term, a word used before it is defined, or a word that differs from the label users see elsewhere in the product.
 
 - Check: is each domain noun in the glossary, defined before first use, used with one meaning, and the same as the visible labels in the rest of the product and the codebase?
-- Shape: "'Band' means a stretch of the chart, then the precision the cohort allows, in the same sentence." / "'Role' already means member, consultant or principal."
+- Shape: "'Band' means a stretch of the chart, then the precision the cohort allows, in the same sentence." / "'Role' already means member, consultant or principal." / "'Total compensation' means pay as paid in one panel and adjusted pay in another."
 
 ## Formula
 
 A computed figure lacks its formula, base, tie rule, method, rounding or cap; or a number appears with no reason.
 
-- Check: does a worked example with real numbers reproduce each figure? For each threshold, cap, window or floor: why this value and not half or double? What can the data actually resolve at the smallest group size?
-- Shape: "Which base does a months-of-base bonus multiply?" / "With 34 members, neighbouring totals are 3 percentile points apart, so 'a couple of points' is finer than the cohort resolves."
+- Check: does a worked example with real numbers reproduce each figure? For each threshold, cap, window or floor: why this value and not half or double? What can the data actually resolve at the smallest group size? Does each comparison use one basis on both sides: as paid or adjusted (for example, annualised), gross or net, one currency, one date?
+- Shape: "Which base does a months-of-base bonus multiply?" / "The part reads '50% below median': the member's amount is as paid, but the median uses adjusted amounts." / "With 34 members, neighbouring totals are 3 percentile points apart, so 'a couple of points' is finer than the cohort resolves."
 
 ## Inference leak
 
