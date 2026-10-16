@@ -34,6 +34,7 @@ Cut the grid into vertical **slices**. Each slice is a part of the feature a tea
 - One concept stays in one spec file. The slices build that file up, one pull request each, stacked in order (in an Argus project: `gh stack`, trunk `develop`).
 - A slice that waits on another spec or an open decision goes last, so it holds back no other slice.
 - Changes to sibling specs and the glossary go in the slice that needs them.
+- Each slice's pull request names its place in the title and in the first line of the body, such as "Slice 1 of 3".
 - Search the tracker for every existing ticket of this feature, by the spec's name, its project and its key nouns. A teammate may have created one from a review comment. A slice that an existing ticket already covers reuses that ticket.
 
 Done when: every grid cell belongs to exactly one slice, and each slice names what it depends on. No slice duplicates an existing ticket.
