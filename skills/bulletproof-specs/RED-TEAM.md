@@ -26,7 +26,8 @@ Report each finding as:
 - Question: the one question the author must answer, with the options you see
 
 First, check each decision in the list against every rule it touches.
-Report only what the scenario proves. When a point is already an Open Question,
+Write the report in Simplified Technical English (ASD-STE100): active voice, one idea per
+sentence, 20 words or fewer. Quote spec text exactly. Report only what the scenario proves. When a point is already an Open Question,
 name that OQ instead of raising it again. End with the list of rule IDs you checked.
 ```
 

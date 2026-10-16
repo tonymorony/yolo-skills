@@ -120,7 +120,7 @@ An open question is a hole a reviewer can attack, so each one is either closed o
 
 ## Writing
 
-Every text this skill produces follows Simplified Technical English (ASD-STE100): the spec, its glossary rows, the replies, the commit messages, the pull request text, the ticket notes and the reports to the user.
+Every text this skill produces follows Simplified Technical English (ASD-STE100): the chat with the user, the spec, its glossary rows, ADRs, the replies, the commit messages, the pull request text, the ticket drafts, and every report, a subagent's report included. Quoted text stays as written.
 
 - Use the active voice and simple tenses: present, past and future.
 - Give one idea in each sentence, in 20 words or fewer. Keep paragraphs to six sentences or fewer.
@@ -128,6 +128,7 @@ Every text this skill produces follows Simplified Technical English (ASD-STE100)
 - **Describe**: say what a thing does, what it costs, and what it cannot do. Leave praise and blame out.
 - Define a term before its second use. Take domain words from the project glossary, and read it before naming a domain concept.
 - Keep technical items exact: file paths, rule IDs, identifiers, commands, numbers, prices and quoted text.
+- Spell as the project spells. In an Argus project that is British English (Copy constraints in `.argus/project.md`).
 - Name the noun again when a pronoun could point to two nouns. After "the tickets" and "the team", write "the tickets", not "them".
 - Text a person reads in the app also follows the project's copy rules. In a spec, write the rule the copy must meet; the exact words are the design's call.
 
