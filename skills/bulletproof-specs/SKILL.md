@@ -5,7 +5,7 @@ description: Write or harden a product spec until an adversarial reviewer finds 
 
 A spec is **bulletproof** when a hostile, careful reader finds no gap: every rule is falsifiable, every combination has an outcome, every figure has a formula, every sentence has a source. Reviewers on real spec pull requests found ~160 defects that the author could have found alone. This skill moves that work before the push.
 
-The loop: **ground → grid → draft → red-team → grill → apply → repeat → gate**. Nothing leaves the machine until the gate.
+The loop: **ground → grid → slice → draft → red-team → grill → apply → repeat → gate**. Nothing leaves the machine until the gate.
 
 When review comments arrive on a spec that is already pushed, go to [`REVIEW-REPLIES.md`](REVIEW-REPLIES.md) instead.
 
@@ -27,7 +27,17 @@ Before any prose, build the **grid** the rules must cover:
 
 Done when: every cell holds an outcome, an open Open Question with its **Until then** outcome, or an out-of-scope line naming where it lives.
 
-## 3. Draft
+## 3. Slice
+
+Cut the grid into vertical **slices**. Each slice is a part of the feature a team can build and a member can use alone: its own rules, edge cases, open questions and build ticket. The first slice is the smallest one with no open dependency.
+
+- One concept stays in one spec file. The slices build that file up, one pull request each, stacked in order (in an Argus project: `gh stack`, trunk `develop`).
+- A slice that waits on another spec or an open decision goes last, so it holds back no other slice.
+- Changes to sibling specs and the glossary go in the slice that needs them.
+
+Done when: every grid cell belongs to exactly one slice, and each slice names what it depends on.
+
+## 4. Draft
 
 Use the project's spec format (the one sibling specs follow; fall back to Overview, User Stories, Business Rules, Edge Cases, Open Questions). Write every line under the writing rules at the end of this file.
 
@@ -40,9 +50,9 @@ Use the project's spec format (the one sibling specs follow; fall back to Overvi
 
 Done when: the grid maps onto rule and edge-case IDs with no orphan cell, and no sentence lacks a ledger entry.
 
-## 4. Red-team
+## 5. Red-team
 
-Hand the draft to fresh subagents with no drafting context, so they read it as a reviewer does. Use the prompt in [`RED-TEAM.md`](RED-TEAM.md) and the classes in [`DEFECTS.md`](DEFECTS.md), one subagent per lens, in parallel (with no subagents available, run the lenses one after another in a clean pass):
+Draft and red-team one slice at a time. Hand the draft to fresh subagents with no drafting context, so they read it as a reviewer does. Use the prompt in [`RED-TEAM.md`](RED-TEAM.md) and the classes in [`DEFECTS.md`](DEFECTS.md), one subagent per lens, in parallel (with no subagents available, run the lenses one after another in a clean pass):
 
 - **Logic**: missing state, collision, two readings, formula, validation outcome.
 - **Language and links**: term drift, plain words, ripple, overclaim, ownership.
@@ -52,7 +62,7 @@ Triage every finding into one verdict: **defect** (fix or ask), **tracked** (an 
 
 Done when: every finding carries a verdict and every defect carries either a proposed edit or a question for the user.
 
-## 5. Grill
+## 6. Grill
 
 Put each decision to the user, one at a time. For each question give, in plain words:
 
@@ -64,19 +74,19 @@ Wait for the answer before the next question. Record each answer as a rule edit 
 
 Done when: no defect is left without an answer or an Open Question.
 
-## 6. Apply
+## 7. Apply
 
 Make the smallest edit that carries each decision; keep the surrounding sentences. Then run the **ripple** check: search this spec and every sibling spec for each rule ID, term and number the edit touched, and bring each reference into agreement.
 
 Done when: every hit of every touched ID, term and number agrees with the edit.
 
-## 7. Repeat
+## 8. Repeat
 
 Red-team again: once on the changed sections, then one full pass with fresh subagents. Grill and apply again for any new defect.
 
 Done when: one full red-team pass returns zero defects (only tracked, design or unsupported verdicts).
 
-## 8. Gate
+## 9. Gate
 
 Show the user the diff, the list of decisions taken (with dates), the open Open Questions with their **Blocks** and **Until then**, and the draft note for each owning ticket. Then stop. Commit, push, open or update a pull request only after the user says so in plain words, for this change. Keep a spec pull request to documents; a code or copy change the spec implies goes to a follow-up ticket.
 

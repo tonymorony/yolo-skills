@@ -23,7 +23,7 @@ For each comment that needs a decision, ask the user one comment at a time, with
 - what the spec says now, in plain words, with a short example;
 - the options, your recommendation first, with its reason.
 
-The user decides product questions themselves; write the reply as the decision. Collect all decisions first, then edit (smallest change, ripple check from `SKILL.md` step 6), then draft every reply.
+The user decides product questions themselves; write the reply as the decision. Collect all decisions first, then edit (smallest change, ripple check from `SKILL.md` step 7), then draft every reply.
 
 ## Reply shapes
 
