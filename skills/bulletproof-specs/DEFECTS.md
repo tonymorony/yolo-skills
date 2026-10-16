@@ -62,8 +62,8 @@ A sentence breaks the writing rules in `SKILL.md`: over 20 words, more than one 
 
 An edit changed a rule, term or number, and another rule, edge case, open question or sibling spec still says the old thing.
 
-- Check: after each edit, search this spec and every sibling spec for each touched ID, term and number. Does every hit agree?
-- Shape: "EC-2 still says 'the next time Home loads'." / "The compensation spec's OQ-13 still gives the old formula."
+- Check: after each edit, search the whole repository for each touched ID, term, alias and number. Include the specs, glossary, agent context, app copy and plans. Does every hit agree? Does a sentence the edit extended still agree with its own start?
+- Shape: "EC-2 still says 'the next time Home loads'." / "The compensation spec's OQ-13 still gives the old formula." / "The glossary drops 'Firm principal' as an alias, but compensation BR-1 still uses it." / "The follow-up pull request still says 'pointing those lines here is a follow-up'."
 
 ## Code claim
 
@@ -98,4 +98,4 @@ A refused input with no statement of what is saved, what is not saved, and where
 A rule owned by two specs (copies that drift), an operation in no story, a deferral with no owner, a first-build list that misses a part.
 
 - Check: is each rule owned by exactly one spec? Does every operation (view, add, update, remove) appear in a story? Does every deferral name its owner or ticket?
-- Shape: "The picker is written in two specs." / "A backlog cut story by story leaves removing a pick in no ticket."
+- Shape: "The picker is written in two specs." / "A backlog cut story by story leaves removing a pick in no ticket." / "The glossary restates the conditions of BR-24 and misses a later change to them."

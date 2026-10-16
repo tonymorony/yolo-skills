@@ -47,7 +47,7 @@ Use the project's spec format (the one sibling specs follow; fall back to Overvi
 - Every rule is falsifiable: a reader can describe a case that breaks it.
 - Every number carries its reason in the rationale: why this value and not half or double.
 - Every computed figure has a formula, a tie rule, rounding, bounds and units, plus a worked example with real numbers under the rule.
-- Every domain noun is a glossary term, defined before first use, with one meaning. A new term goes to the user as a proposal (term, definition, aliases, example) before it enters the spec.
+- Every domain noun is a glossary term, defined before first use, with one meaning. A new term goes to the user as a proposal (term, definition, aliases, example) before it enters the spec. A glossary definition says what the term is in one or two sentences and cites the rule IDs. It does not copy the conditions of a rule, because a copy drifts when the rule changes.
 - Every Edge Case cites the rule it applies; every Open Question follows the open-question rules at the end of this file.
 
 Done when: the grid maps onto rule and edge-case IDs with no orphan cell, and no sentence lacks a ledger entry.
@@ -87,9 +87,11 @@ Done when: every defect and every consequence-check gap has an answer or an Open
 
 ## 7. Apply
 
-Make the smallest edit that carries each decision; keep the surrounding sentences. Then run the **ripple** check: search this spec and every sibling spec for each rule ID, term and number the edit touched, and bring each reference into agreement.
+Make the smallest edit that carries each decision; keep the surrounding sentences. Then run the **ripple** check: search the whole repository for each rule ID, term, alias and number the edit touched. Bring each reference into agreement. The search covers every spec, the glossary, the agent context, the app copy and the plans. In an Argus project, the agent context is `.argus/project.md`, and the copy is in `config/locales/`. A word that a change makes an alias needs this search most.
 
 Then run the **diff check**: read the diff against the version before this step. Only the intended lines may change. Restore any lost line. A scripted edit, a merge and a conflict resolution lose lines most often.
+
+After a rebase, or when you take over commits from another session, re-read each commit. Check its content against the current spec and glossary. A patch that applies cleanly can still state an old decision.
 
 Done when: every touched ID, term and number agrees with the edit. The diff check shows only the intended lines.
 
