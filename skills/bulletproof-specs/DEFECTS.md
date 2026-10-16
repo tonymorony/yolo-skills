@@ -67,9 +67,9 @@ An edit changed a rule, term or number, and another rule, edge case, open questi
 
 ## Code claim
 
-A statement about current behaviour, limits, callers or cited rule numbers that nobody checked in the code.
+A statement about current behaviour, limits, callers, cited rule numbers or cited tickets that nobody checked at its source.
 
-- Check: did you open the code for each claim about the existing system? Cite `file:line` in the ledger.
+- Check: did you open the code for each claim about the existing system, and the ticket or spec for each ID you cite? Cite `file:line` or the ID's title in the ledger. Does a resolved open question in a sibling spec already decide the point?
 - Shape: "Only one policy calls that predicate." / "The rule treats 20 days as a full month; the field accepts 23."
 
 ## Source claim

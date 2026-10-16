@@ -13,7 +13,7 @@ When review comments arrive on a spec that is already pushed, go to [`REVIEW-REP
 
 Read the sources of truth before writing a line: the project context, the glossary, every sibling spec that touches this feature, the ticket, the current design of each screen, and the code the feature reads or changes. Look up facts yourself; put only decisions to the user.
 
-Keep a **ledger**: one line per fact, with its source (`file.md` + rule ID, `path/to/file.rb:42`, ticket ID, design frame, or "user, <date>"). Claims about current behaviour, limits and lists come from the code or the provider, opened in this session.
+Keep a **ledger**: one line per fact, with its source (`file.md` + rule ID, `path/to/file.rb:42`, ticket ID, design frame, or "user, <date>"). Claims about current behaviour, limits and lists come from the code or the provider, opened in this session. Cite a ticket, pull request or rule ID only after you open it: a roadmap or a summary is a lead, not a source. Read the Open Questions of every sibling spec too: a resolved one is a decision, and it binds this spec as a rule does.
 
 Done when: every element of the design is in the ledger, and every statement you plan to make about the existing system has a source next to it.
 
@@ -70,7 +70,7 @@ Put each decision to the user, one at a time. For each question give, in plain w
 2. A concrete example with a persona and real figures that shows the gap.
 3. The options, with your recommendation first and its reason.
 
-Wait for the answer before the next question. Record each answer as a rule edit or as a resolved Open Question: `Resolved (<date>) — <decision> (BR-n)`. An answer the user leaves open becomes an open Open Question under the rules below; one that blocks the first build stays in the grill.
+Wait for the answer before the next question. Check each answer against the ledger and the sibling specs before you record it; a conflict becomes the next question. Record each answer as a rule edit or as a resolved Open Question: `Resolved (<date>) — <decision> (BR-n)`. An answer the user leaves open becomes an open Open Question under the rules below; one that blocks the first build stays in the grill.
 
 Done when: no defect is left without an answer or an Open Question.
 
