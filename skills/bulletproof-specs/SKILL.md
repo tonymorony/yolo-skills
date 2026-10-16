@@ -105,7 +105,9 @@ Enter the gate only when no open Open Question blocks the first build.
 
 Show the user the diff, the list of decisions taken (with dates), the open Open Questions with their **Blocks** and **Until then**, and the ticket drafts (build tickets, design tickets, notes on owning tickets). Then stop. Commit, push, open or update a pull request only after the user says so in plain words, for this change. Keep a spec pull request to documents; a code or copy change the spec implies goes to a follow-up ticket.
 
-Done when: the user has said go, revise or stop for this diff. On go, commit, push and post the ticket notes. On revise, return to step 7.
+Done when: the user has said go, revise or stop for this diff. On go, commit and push. On revise, return to step 7.
+
+Tickets come after the spec. Create or update a ticket (a build ticket, a design ticket, or a note on an owning ticket) only after the spec pull request is merged. Use the drafts kept at the gate.
 
 ## Open Questions
 
@@ -114,7 +116,7 @@ An open question is a hole a reviewer can attack, so each one is either closed o
 - **Resolved**: every grill decision is recorded as `Resolved (<date>) — <decision> (BR-n)`, naming the options set aside when they matter. It keeps the question from being reopened.
 - **Open**: each carries an owner (a role, never a person), **Blocks** (the first build, a named later spec or ticket, or nothing) and **Until then** (the behaviour this spec states meanwhile, as a rule ID). A fenced question leaves no grid cell empty.
 - **Blocks the first build**: such a question stays in the grill until it is decided; it never reaches the gate as open.
-- **Owned elsewhere**: a question a later spec owns is a pointer to that spec's ticket. At the gate, draft a note for that ticket.
+- **Owned elsewhere**: a question a later spec owns is a pointer to that spec's ticket. At the gate, draft a note for that ticket. Post the note after the spec pull request is merged.
 
 ## Writing
 
