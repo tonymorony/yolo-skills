@@ -25,7 +25,7 @@ Before any prose, build the **grid** the rules must cover:
 - For each rule, each input × its states: present, absent, zero, at the boundary, stale, not yet computed, changed mid-session.
 - For each figure shown: who sees it, the smallest group it is drawn from, and how often it changes.
 
-Done when: every cell holds an outcome, an Open Question with an owner, or an out-of-scope line naming where it lives.
+Done when: every cell holds an outcome, an open Open Question with its **Until then** outcome, or an out-of-scope line naming where it lives.
 
 ## 3. Draft
 
@@ -36,7 +36,7 @@ Use the project's spec format (the one sibling specs follow; fall back to Overvi
 - Every number carries its reason in the rationale: why this value and not half or double.
 - Every computed figure has a formula, a tie rule, rounding, bounds and units, plus a worked example with real numbers under the rule.
 - Every domain noun is a glossary term, defined before first use, with one meaning. A new term goes to the user as a proposal (term, definition, aliases, example) before it enters the spec.
-- Every Edge Case cites the rule it applies; every Open Question has an owner (a role) and a status.
+- Every Edge Case cites the rule it applies; every Open Question follows the open-question rules at the end of this file.
 
 Done when: the grid maps onto rule and edge-case IDs with no orphan cell, and no sentence lacks a ledger entry.
 
@@ -60,7 +60,7 @@ Put each decision to the user, one at a time. For each question give, in plain w
 2. A concrete example with a persona and real figures that shows the gap.
 3. The options, with your recommendation first and its reason.
 
-Wait for the answer before the next question. Record each answer as a rule edit or as a resolved Open Question: `Resolved (<date>) — <decision> (BR-n)`. An answer the user leaves open stays an Open Question with an owner, marked when it blocks the first build.
+Wait for the answer before the next question. Record each answer as a rule edit or as a resolved Open Question: `Resolved (<date>) — <decision> (BR-n)`. An answer the user leaves open becomes an open Open Question under the rules below; one that blocks the first build stays in the grill.
 
 Done when: no defect is left without an answer or an Open Question.
 
@@ -78,4 +78,15 @@ Done when: one full red-team pass returns zero defects (only tracked, design or 
 
 ## 8. Gate
 
-Show the user the diff, the list of decisions taken (with dates), and the Open Questions still open. Then stop. Commit, push, open or update a pull request only after the user says so in plain words, for this change. Keep a spec pull request to documents; a code or copy change the spec implies goes to a follow-up ticket.
+Show the user the diff, the list of decisions taken (with dates), the open Open Questions with their **Blocks** and **Until then**, and the draft note for each owning ticket. Then stop. Commit, push, open or update a pull request only after the user says so in plain words, for this change. Keep a spec pull request to documents; a code or copy change the spec implies goes to a follow-up ticket.
+
+Done when: no open Open Question blocks the first build.
+
+## Open Questions
+
+An open question is a hole a reviewer can attack, so each one is either closed or **fenced**.
+
+- **Resolved**: every grill decision is recorded as `Resolved (<date>) — <decision> (BR-n)`, naming the options set aside when they matter. It keeps the question from being reopened.
+- **Open**: each carries an owner (a role, never a person), **Blocks** (the first build, a named later spec or ticket, or nothing) and **Until then** (the behaviour this spec states meanwhile, as a rule ID). A fenced question leaves no grid cell empty.
+- **Blocks the first build**: such a question stays in the grill until it is decided; it never reaches the gate as open.
+- **Owned elsewhere**: a question a later spec owns is a pointer to that spec's ticket. At the gate, draft a note for that ticket; post it after the user approves.
