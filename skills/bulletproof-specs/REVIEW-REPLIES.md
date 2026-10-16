@@ -4,7 +4,7 @@ The branch for a spec that is already pushed and has reviewer comments.
 
 ## Triage
 
-Read every comment, including threads GitHub collapses as outdated. Group comments by root cause first: reviewers often raise one gap in parallel threads. Give each group one verdict:
+Read every comment, including threads GitHub collapses as outdated. When the user links one comment, read its whole thread first. A short reply often refers to an earlier comment in that thread. Group comments by root cause first: reviewers often raise one gap in parallel threads. Give each group one verdict:
 
 - **Defect**: the scenario holds against the spec text. Fix it or ask the user.
 - **Tracked**: an Open Question already holds it. Reply with a pointer to that OQ.
