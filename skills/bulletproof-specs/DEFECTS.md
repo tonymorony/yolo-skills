@@ -62,15 +62,15 @@ A sentence breaks the writing rules in `SKILL.md`: over 20 words, more than one 
 
 An edit changed a rule, term or number, and another rule, edge case, open question or sibling spec still says the old thing.
 
-- Check: after each edit, search the whole repository for each touched ID, term, alias and number. Include the specs, glossary, agent context, app copy and plans. Does every hit agree? Does a sentence the edit extended still agree with its own start?
-- Shape: "EC-2 still says 'the next time Home loads'." / "The compensation spec's OQ-13 still gives the old formula." / "The glossary drops 'Firm principal' as an alias, but compensation BR-1 still uses it." / "The follow-up pull request still says 'pointing those lines here is a follow-up'."
+- Check: after each edit, search the whole repository for each touched ID, term, alias and number. Include the specs, glossary, agent context, app copy and plans. Does every hit agree? Does a sentence the edit extended still agree with its own start? Then list every row that cites each changed rule, and every row the changed rule cites. Does each row still agree with the new meaning, also where it shares no word with the edit?
+- Shape: "OQ-16 still says 'no package is left out', but BR-17 now leaves one out." / "EC-2 still says 'the next time Home loads'." / "The compensation spec's OQ-13 still gives the old formula." / "The glossary drops 'Firm principal' as an alias, but compensation BR-1 still uses it." / "The follow-up pull request still says 'pointing those lines here is a follow-up'."
 
 ## Code claim
 
 A statement about current behaviour, limits, callers, cited rule numbers or cited tickets that nobody checked at its source.
 
-- Check: did you open the code for each claim about the existing system, and the ticket or spec for each ID you cite? Cite `file:line` or the ID's title in the ledger. Does a resolved open question in a sibling spec already decide the point?
-- Shape: "Only one policy calls that predicate." / "The rule treats 20 days as a full month; the field accepts 23."
+- Check: did you open the code for each claim about the existing system, and the ticket or spec for each ID you cite? Cite `file:line` or the ID's title in the ledger. Does a resolved open question in a sibling spec, or a decision on a ticket, already decide the point? Does a rule that records a decision keep its nouns and qualifiers?
+- Shape: "Only one policy calls that predicate." / "The ticket decided to leave out a package with a no-rate amount in its total; the rule leaves out any no-rate amount, allowances included." / "The rule treats 20 days as a full month; the field accepts 23."
 
 ## Source claim
 
@@ -97,5 +97,5 @@ A refused input with no statement of what is saved, what is not saved, and where
 
 A rule owned by two specs (copies that drift), an operation in no story, a deferral with no owner, a first-build list that misses a part.
 
-- Check: is each rule owned by exactly one spec? Does every operation (view, add, update, remove) appear in a story? Does every deferral name its owner or ticket?
-- Shape: "The picker is written in two specs." / "A backlog cut story by story leaves removing a pick in no ticket." / "The glossary restates the conditions of BR-24 and misses a later change to them."
+- Check: is each rule owned by exactly one spec? Does every operation (view, add, update, remove) appear in a story? Does every deferral name its owner or ticket? Does a rule that hands a case to a ticket also have an open Open Question row with **Blocks** and **Until then**?
+- Shape: "The picker is written in two specs." / "BR-34 says 'WEB-246 settles what they see', and no Open Question gives a state until then." / "A backlog cut story by story leaves removing a pick in no ticket." / "The glossary restates the conditions of BR-24 and misses a later change to them."

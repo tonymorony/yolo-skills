@@ -13,7 +13,7 @@ When review comments arrive on a spec that is already pushed, go to [`REVIEW-REP
 
 Read the sources of truth before writing a line: the project context, the glossary, every sibling spec that touches this feature, the ticket, the current design of each screen, and the code the feature reads or changes. Look up facts yourself; put only decisions to the user.
 
-Keep a **ledger**: one line per fact, with its source (`file.md` + rule ID, `path/to/file.rb:42`, ticket ID, design frame, or "user, <date>"). Claims about current behaviour, limits and lists come from the code or the provider, opened in this session. Cite a ticket, pull request or rule ID only after you open it: a roadmap or a summary is a lead, not a source. Read the Open Questions of every sibling spec too: a resolved one is a decision, and it binds this spec as a rule does.
+Keep a **ledger**: one line per fact, with its source (`file.md` + rule ID, `path/to/file.rb:42`, ticket ID, design frame, or "user, <date>"). Claims about current behaviour, limits and lists come from the code or the provider, opened in this session. Cite a ticket, pull request or rule ID only after you open it: a roadmap or a summary is a lead, not a source. Read the Open Questions of every sibling spec too: a resolved one is a decision, and it binds this spec as a rule does. Read the decision tickets of the feature as well: a "Decisions taken" list on a ticket, or the decision map in a technical plan. A decision there binds this spec in the same way, until the spec records it.
 
 Done when: every element of the design is in the ledger, and every statement you plan to make about the existing system has a source next to it.
 
@@ -44,6 +44,7 @@ Done when: every grid cell belongs to exactly one slice, and each slice names wh
 Use the project's spec format (the one sibling specs follow; fall back to Overview, User Stories, Business Rules, Edge Cases, Open Questions). Write every line under the writing rules at the end of this file.
 
 - Every sentence traces to the ledger or a user decision. A sentence with no source becomes an Open Question instead. This is **provenance**: the spec states only what someone decided.
+- A rule that records a decision keeps the scope of its source: the same nouns and the same qualifiers. "An amount in the total" does not become "an amount".
 - Every rule is falsifiable: a reader can describe a case that breaks it.
 - Every number carries its reason in the rationale: why this value and not half or double.
 - Every computed figure has a formula, a tie rule, rounding, bounds and units, plus a worked example with real numbers under the rule.
@@ -89,17 +90,25 @@ Done when: every defect and every consequence-check gap has an answer or an Open
 
 Make the smallest edit that carries each decision; keep the surrounding sentences. Then run the **ripple** check: search the whole repository for each rule ID, term, alias and number the edit touched. Bring each reference into agreement. The search covers every spec, the glossary, the agent context, the app copy and the plans. In an Argus project, the agent context is `.argus/project.md`, and the copy is in `config/locales/`. A word that a change makes an alias needs this search most.
 
+A search for words finds only rows that repeat the edit. A stale row often shares no word with it. So also check the **citations** of each changed rule, by meaning:
+
+1. List every row that cites the changed rule, for example with `grep -n 'BR-17\b'` over the specs, the glossary and the plans.
+2. List every row that the changed rule cites.
+3. Read each row against the new meaning. Bring each row that now says something else into agreement.
+
 Then run the **diff check**: read the diff against the version before this step. Only the intended lines may change. Restore any lost line. A scripted edit, a merge and a conflict resolution lose lines most often.
 
 After a rebase, or when you take over commits from another session, re-read each commit. Check its content against the current spec and glossary. A patch that applies cleanly can still state an old decision.
 
-Done when: every touched ID, term and number agrees with the edit. The diff check shows only the intended lines.
+Done when: every touched ID, term and number agrees with the edit. Every row that cites a changed rule, or that a changed rule cites, agrees with its new meaning. The diff check shows only the intended lines.
 
 ## 8. Repeat
 
 A **round** is one red-team pass on the changed rules, then one full pass, both with fresh subagents. The step 5 pass counts as round one. Count rounds per slice. Give the subagents the list of decisions taken since the last pass. Grill and apply again for any new defect.
 
 Stop after three rounds that still find defects. Each round costs a full review, and a defect that survives three needs a user decision, not another pass. Put each such defect to the user. A defect that blocks the first build needs a decision. Any other defect can become an open Open Question with an owner, **Blocks** and **Until then**.
+
+The cap limits full rounds. It does not exempt an edit from review. Every edit that will be pushed gets one **check pass**: a fresh subagent with the Logic and the Language and links lenses reads the changed rows and every row that cites them. This holds after round three, and for every fix after the gate. A quick fix with no check pass is where reviewers find the next defect.
 
 Done when: one full pass returns zero defects (only tracked, design or unsupported verdicts). After round three, done when the user has answered every defect left.
 
@@ -120,6 +129,7 @@ An open question is a hole a reviewer can attack, so each one is either closed o
 - **Resolved**: every grill decision is recorded as `Resolved (<date>) — <decision> (BR-n)`, naming the options set aside when they matter. It keeps the question from being reopened.
 - **Open**: each carries an owner (a role, never a person), **Blocks** (the first build, a named later spec or ticket, or nothing) and **Until then** (the behaviour this spec states meanwhile, as a rule ID). A fenced question leaves no grid cell empty.
 - **Blocks the first build**: such a question stays in the grill until it is decided; it never reaches the gate as open.
+- **A pointer is not a fence**: a rule that hands a case to a ticket or a later spec still needs an open Open Question row with **Blocks** and **Until then**. Otherwise an engineer who builds from the spec finds no state for that case.
 - **Owned elsewhere**: a question a later spec owns is a pointer to that spec's ticket. At the gate, draft a note for that ticket. Post the note after the spec pull request is merged.
 
 ## Writing

@@ -29,6 +29,8 @@ For each group that needs a decision, ask the user one group at a time, with:
 
 The user decides product questions themselves; write the reply as the decision. Run the consequence check from `SKILL.md` step 6 on each answer before the next question. Collect all decisions, then edit. Use the smallest change, the ripple check and the diff check from `SKILL.md` step 7. Then run every lens from `RED-TEAM.md` on the changed rules. Put each new defect to the user before you draft the replies.
 
+Each later batch on the same pull request gets at least the check pass from `SKILL.md` step 8, however small its fix. This holds after the round cap too. A reviewer's next comment often lands on a fix that skipped it.
+
 Done when: every group has a verdict, every decision is recorded, and the changed rules pass the red-team.
 
 ## Reply shapes
