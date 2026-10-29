@@ -27,7 +27,7 @@ import sys
 
 ROW = re.compile(r"^\|\s*([A-Z]{2,4}-\d+)\s*\|")
 CITE = re.compile(r"(?<![\w-])((?:BR|EC|OQ)-\d+)\b")
-EXTERNAL = re.compile(r"(?<![\w-])([a-z][a-z-]*)\s+(?:BR|EC|OQ)-\d+\s*$")
+EXTERNAL = re.compile(r"(?<![\w-])([A-Za-z][a-z-]*)\s+(?:BR|EC|OQ)-\d+\s*$")
 CODE = re.compile(r"`([\w./-]+\.[a-z]{1,5})(:\d+(?:-\d+)?)?`")
 
 
@@ -42,6 +42,7 @@ def rows(text):
 
 
 def is_spec(word, specs):
+    word = word.lower()
     return word == "its" or "-" in word or os.path.exists(os.path.join(specs, word + ".md"))
 
 
