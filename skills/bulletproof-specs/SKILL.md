@@ -1,6 +1,6 @@
 ---
 name: bulletproof-specs
-description: Write or harden a product spec until an adversarial reviewer finds nothing. Use when drafting or revising a spec document, before a spec is pushed or its pull request is opened, or when review comments arrive on a spec.
+description: Write or harden a product spec until an adversarial reviewer finds nothing. Use when drafting or revising a spec document, before a spec is pushed or its pull request is opened, or when review comments arrive on a spec. Use also when a design pull request of a spec merges and its build ticket is due.
 ---
 
 A spec is **bulletproof** when a hostile, careful reader finds no gap: every rule is falsifiable, every combination has an outcome, every figure has a formula, every sentence has a source. Reviewers on real spec pull requests found ~160 defects that the author could have found alone. This skill moves that work before the push.
@@ -125,6 +125,12 @@ Show the user the diff, the list of decisions taken (with dates), the open Open 
 Done when: the user has said go, revise or stop for this diff. On go, commit and push. On revise, return to step 7.
 
 Tickets come after the spec. Create or update a ticket (a build ticket, a design ticket, or a note on an owning ticket) only after the spec pull request is merged. Use the drafts kept at the gate.
+
+A build ticket comes after its design. A slice with a design ticket gets its build ticket only after the design pull request of that ticket is merged. A slice with no design ticket gets its build ticket when the spec pull request is merged.
+
+- Start from the gate draft. Bring it into agreement with the merged design: the design decides the screens and the words, and the build ticket adds no new decision.
+- Link the build ticket to the design ticket, the merged design pull request, the spec and its rule IDs.
+- When you work on a feature, check each of its design tickets. A design ticket with a merged pull request and no build ticket gets one. This keeps every slice moving from spec to design to build.
 
 ## Open Questions
 
