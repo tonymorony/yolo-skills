@@ -72,6 +72,13 @@ A statement about current behaviour, limits, callers, cited rule numbers or cite
 - Check: did you open the code for each claim about the existing system, and the ticket or spec for each ID you cite? Cite `file:line` or the ID's title in the ledger. Does a resolved open question in a sibling spec, or a decision on a ticket, already decide the point? Does a rule that records a decision keep its nouns and qualifiers?
 - Shape: "Only one policy calls that predicate." / "The ticket decided to leave out a package with a no-rate amount in its total; the rule leaves out any no-rate amount, allowances included." / "The rule treats 20 days as a full month; the field accepts 23."
 
+## Convention override
+
+A rule asks for a mechanism that the project's conventions do otherwise, and the spec does not say so. A builder who copies the closest sibling follows the convention and breaks the rule.
+
+- Check: for each mechanism a rule asks for (deletion, caching, headers, storage), what does the conventions file say? Where they differ, does the rationale name the override, and does the build ticket draft carry the exception?
+- Shape: "The rule hard-deletes a record; the conventions soft-delete every record a user can see." / "The rule keeps a page out of the client page cache; the conventions cache every page of that kind."
+
 ## Source claim
 
 An external provider, standard or fixed list is assumed to cover what the spec needs.

@@ -19,4 +19,5 @@ ln -s ~/devel/yolo-skills/skills/spec-review ~/.claude/skills/spec-review
 
 - The structure follows Matt Pocock's [`writing-for-agents`](https://github.com/mattpocock/skills/tree/main/skills/productivity/writing-for-agents) (steps with completion criteria, disclosed reference, leading words).
 - The lenses in `spec-review` come from a review of six design pull requests against one spec. `atoms.py` reads specs with BR, EC and OQ tables, and prose specs.
+- `bulletproof-specs/spec_lint.py` checks a spec for duplicate and dangling IDs, line-number code citations, missing paths and, in a stack, IDs that a higher slice already uses.
 - The defect classes in `DEFECTS.md` come from the reviewer comments on two real spec pull requests, about 160 comments in total.

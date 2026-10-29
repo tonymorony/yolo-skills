@@ -11,7 +11,7 @@ When review comments arrive on a spec that is already pushed, go to [`REVIEW-REP
 
 ## 1. Ground
 
-Read the sources of truth before writing a line: the project context, the glossary, every sibling spec that touches this feature, the ticket, the current design of each screen, and the code the feature reads or changes. Look up facts yourself; put only decisions to the user.
+Read the sources of truth before writing a line: the project context, the glossary, every sibling spec that touches this feature, the ticket, the current design of each screen, and the code the feature reads or changes. Read the project's conventions for each mechanism a rule touches (in an Argus project, `.argus/conventions.md`). Look up facts yourself; put only decisions to the user.
 
 Keep a **ledger**: one line per fact, with its source (`file.md` + rule ID, `path/to/file.rb:42`, ticket ID, design frame, or "user, <date>"). Claims about current behaviour, limits and lists come from the code or the provider, opened in this session. Cite a ticket, pull request or rule ID only after you open it: a roadmap or a summary is a lead, not a source. Read the Open Questions of every sibling spec too: a resolved one is a decision, and it binds this spec as a rule does. Read the decision tickets of the feature as well: a "Decisions taken" list on a ticket, or the decision map in a technical plan. A decision there binds this spec in the same way, until the spec records it.
 
@@ -46,6 +46,8 @@ Use the project's spec format (the one sibling specs follow; fall back to Overvi
 - Every sentence traces to the ledger or a user decision. A sentence with no source becomes an Open Question instead. This is **provenance**: the spec states only what someone decided.
 - A rule that records a decision keeps the scope of its source: the same nouns and the same qualifiers. "An amount in the total" does not become "an amount".
 - Every rule is falsifiable: a reader can describe a case that breaks it.
+- A rule states what a user sees or a role decides. A mechanic that no user can observe, such as how an import runs or what a table stores, goes to the build ticket draft.
+- A rule that asks for a mechanism the conventions do otherwise names that **convention override** in its rationale. The build ticket draft carries the exception.
 - Every number carries its reason in the rationale: why this value and not half or double.
 - Every computed figure has a formula, a tie rule, rounding, bounds and units, plus a worked example with real numbers under the rule.
 - Every domain noun is a glossary term, defined before first use, with one meaning. A new term goes to the user as a proposal (term, definition, aliases, example) before it enters the spec. A glossary definition says what the term is in one or two sentences and cites the rule IDs. It does not copy the conditions of a rule, because a copy drifts when the rule changes.
@@ -88,7 +90,7 @@ Done when: every defect and every consequence-check gap has an answer or an Open
 
 ## 7. Apply
 
-Make the smallest edit that carries each decision; keep the surrounding sentences. Then run the **ripple** check: search the whole repository for each rule ID, term, alias and number the edit touched. Bring each reference into agreement. The search covers every spec, the glossary, the agent context, the app copy and the plans. In an Argus project, the agent context is `.argus/project.md`, and the copy is in `config/locales/`. A word that a change makes an alias needs this search most.
+Make the smallest edit that carries each decision; keep the surrounding sentences and the rationale, unless the decision changes the reason. Then run the **ripple** check: search the whole repository for each rule ID, term, alias and number the edit touched. Bring each reference into agreement. The search covers every spec, the glossary, the agent context, the app copy and the plans. In an Argus project, the agent context is `.argus/project.md`, and the copy is in `config/locales/`. A word that a change makes an alias needs this search most.
 
 A search for words finds only rows that repeat the edit. A stale row often shares no word with it. So also check the **citations** of each changed rule, by meaning:
 
@@ -97,6 +99,8 @@ A search for words finds only rows that repeat the edit. A stale row often share
 3. Read each row against the new meaning. Bring each row that now says something else into agreement.
 
 Then run the **diff check**: read the diff against the version before this step. Only the intended lines may change. Restore any lost line. A scripted edit, a merge and a conflict resolution lose lines most often.
+
+Then run the **lint**: `python3 -I <this skill's folder>/spec_lint.py <spec>` from the repository root. It reports duplicate and dangling IDs, code citations with line numbers, and missing paths. In a stack, add `--upper <branch>` for each higher slice and `--since <commit before your edit>`. Fix each report, or name it at the gate.
 
 After a rebase, or when you take over commits from another session, re-read each commit. Check its content against the current spec and glossary. A patch that applies cleanly can still state an old decision.
 
@@ -108,7 +112,7 @@ A **round** is one red-team pass on the changed rules, then one full pass, both 
 
 Stop after three rounds that still find defects. Each round costs a full review, and a defect that survives three needs a user decision, not another pass. Put each such defect to the user. A defect that blocks the first build needs a decision. Any other defect can become an open Open Question with an owner, **Blocks** and **Until then**.
 
-The cap limits full rounds. It does not exempt an edit from review. Every edit that will be pushed gets one **check pass**: a fresh subagent with the Logic and the Language and links lenses reads the changed rows and every row that cites them. This holds after round three, and for every fix after the gate. A quick fix with no check pass is where reviewers find the next defect.
+The cap limits full rounds. It does not exempt an edit from review. Every edit that will be pushed gets one **check pass**: a fresh subagent with the Logic and the Language and links lenses reads the changed rows and every row that cites them. A check pass on a fix reads only the rows that fix changed. A fix that applies an outcome the user already approved ends the batch; name it at the gate as unchecked. This holds after round three, and for every fix after the gate. A quick fix with no check pass is where reviewers find the next defect.
 
 Done when: one full pass returns zero defects (only tracked, design or unsupported verdicts). After round three, done when the user has answered every defect left.
 
@@ -116,7 +120,7 @@ Done when: one full pass returns zero defects (only tracked, design or unsupport
 
 Enter the gate only when no open Open Question blocks the first build.
 
-Show the user the diff, the list of decisions taken (with dates), the open Open Questions with their **Blocks** and **Until then**, and the ticket drafts (build tickets, design tickets, notes on owning tickets). Then stop. Commit, push, open or update a pull request only after the user says so in plain words, for this change. Keep a spec pull request to documents; a code or copy change the spec implies goes to a follow-up ticket.
+Show the user the diff, the list of decisions taken (with dates), the open Open Questions with their **Blocks** and **Until then**, and the ticket drafts (build tickets, design tickets, notes on owning tickets). Then stop. Commit, push, open or update a pull request only after the user says so in plain words, for this change. Keep a spec pull request to documents, and run no setup that changes dependencies; a code or copy change the spec implies goes to a follow-up ticket.
 
 Done when: the user has said go, revise or stop for this diff. On go, commit and push. On revise, return to step 7.
 

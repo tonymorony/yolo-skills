@@ -35,8 +35,10 @@ Lenses:
 
 - **Logic**: Missing state, Collision, Two readings, Formula, Validation outcome.
 - **Language and links**: Term drift, Plain words, Ripple, Overclaim, Ownership.
-- **Outside world**: Inference leak, Design mismatch, Code claim, Source claim.
+- **Outside world**: Inference leak, Design mismatch, Code claim, Convention override, Source claim.
 
 The closing list of checked rule IDs is the completion check: a lens that skipped a rule in scope runs again on that rule.
 
 After a grill or a batch of review replies, run every lens on the changed rules before the gate. Put the decisions in the prompt. This pass counts as a round under the cap in `SKILL.md` step 8.
+
+A check pass (`SKILL.md` step 8) is one subagent, not three. Give it the changed rows and the rows that cite them, not the whole spec, and run it on a smaller model.

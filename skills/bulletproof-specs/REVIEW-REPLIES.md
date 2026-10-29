@@ -13,6 +13,8 @@ Read every comment, including threads GitHub collapses as outdated. When the use
 
 A specific proposal is still a claim. Before recommending it, check its reasoning holds: "Why 20, rather than 15 or 30?" When it fails, the recommendation is the counter-question, kept polite and concrete, with an example that shows the gap.
 
+In a stacked spec, read each row **upstack** before you edit it: the same row and the same IDs on every higher slice (`git show origin/<branch>:<file>`). A higher slice may already replace the row or reuse the ID.
+
 A pushback needs evidence: a cited rule or format convention, the codebase's own word, a counter-example, or a named owner ("the fetch time is engineering's call"). A belief is not evidence.
 
 ## Keep the round finite
@@ -25,7 +27,8 @@ For each group that needs a decision, ask the user one group at a time, with:
 
 - each comment's direct link (`#discussion_r…`) and a quote, saying when the thread is collapsed as outdated;
 - what the spec says now, in plain words, with a short example;
-- the options, your recommendation first, with its reason.
+- the options, your recommendation first, with its reason;
+- for an option that adds a row or narrows a rule: its exact text, already checked against each row it cites.
 
 The user decides product questions themselves; write the reply as the decision. Run the consequence check from `SKILL.md` step 6 on each answer before the next question. Collect all decisions, then edit. Use the smallest change, the ripple check and the diff check from `SKILL.md` step 7. Then run every lens from `RED-TEAM.md` on the changed rules. Put each new defect to the user before you draft the replies.
 
