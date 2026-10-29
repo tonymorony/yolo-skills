@@ -11,6 +11,12 @@ Run it from the repository root. It reports:
 - line-cite: a code citation carries a line number (`app/x.rb:25`),
   which goes stale; name the declaration or the key instead.
 - missing-path: a cited path does not exist in the working tree.
+- out-of-order: an ID heads a row after a higher ID of its kind
+  (BR-118 above BR-16). A spec whose slices keep numbers stable says
+  "Numbers are stable across slices", and then this check is skipped.
+- long-rule: a rule cell holds more than 5 sentences; split the rule.
+- long-sentence: a sentence in a rule cell has more than 20 words.
+  Both size checks read only the rows added or changed since --since.
 - upstack: with --upper, an ID that this file added since --since
   (default HEAD) heads a different row in a higher slice of the stack.
   --repo-path names the file in git when <spec.md> is a copy.
@@ -29,6 +35,9 @@ ROW = re.compile(r"^\|\s*([A-Z]{2,4}-\d+)\s*\|")
 CITE = re.compile(r"(?<![\w-])((?:BR|EC|OQ)-\d+)\b")
 EXTERNAL = re.compile(r"(?<![\w-])([A-Za-z][a-z-]*)\s+(?:BR|EC|OQ)-\d+\s*$")
 CODE = re.compile(r"`([\w./-]+\.[a-z]{1,5})(:\d+(?:-\d+)?)?`")
+SENTENCE = re.compile(r"(?<=[.!?])\s+(?=[A-Z\"`(])")
+STABLE = "Numbers are stable across slices"
+MAX_SENTENCES, MAX_WORDS = 5, 20
 
 
 def rows(text):
@@ -75,6 +84,27 @@ def main(argv):
         if len(places) > 1:
             report.append(f"duplicate {id_}: lines {', '.join(str(n) for n, _ in places)}")
 
+    if STABLE not in text:
+        last = {}
+        for id_, places in sorted(defined.items(), key=lambda kv: kv[1][0][0]):
+            kind, num = id_.split("-")
+            prev = last.get(kind)
+            if prev and int(num) < int(prev.split("-")[1]):
+                report.append(f"out-of-order {prev}: line {defined[prev][0][0]}, above {id_}")
+            last[kind] = id_
+
+    before = rows(git_show(since, repo_path or path))
+    for id_, places in defined.items():
+        n, cell = places[0]
+        if id_ in before and before[id_][0][1] == cell:
+            continue
+        sentences = [x for x in SENTENCE.split(cell) if x.strip()]
+        if len(sentences) > MAX_SENTENCES:
+            report.append(f"long-rule {id_}: line {n}, {len(sentences)} sentences")
+        for x in sentences:
+            if len(x.split()) > MAX_WORDS:
+                report.append(f"long-sentence {id_}: line {n}, {len(x.split())} words: {x[:50]}...")
+
     for n, line in enumerate(text.splitlines(), 1):
         for m in CITE.finditer(line):
             ext = EXTERNAL.search(line[:m.end()])
@@ -93,7 +123,6 @@ def main(argv):
 
     if upper:
         repo_path = repo_path or path
-        before = rows(git_show(since, repo_path))
         added = [i for i in defined if i not in before]
         for ref in upper:
             theirs = rows(git_show(ref, repo_path))

@@ -100,7 +100,7 @@ A search for words finds only rows that repeat the edit. A stale row often share
 
 Then run the **diff check**: read the diff against the version before this step. Only the intended lines may change. Restore any lost line. A scripted edit, a merge and a conflict resolution lose lines most often.
 
-Then run the **lint**: `python3 -I <this skill's folder>/spec_lint.py <spec>` from the repository root. It reports duplicate and dangling IDs, code citations with line numbers, and missing paths. In a stack, add `--upper <branch>` for each higher slice and `--since <commit before your edit>`. Fix each report, or name it at the gate.
+Then run the **lint**: `python3 -I <this skill's folder>/spec_lint.py <spec>` from the repository root. It reports duplicate, dangling and out-of-order IDs, code citations with line numbers, missing paths, and changed rules that are too long. In a stack, add `--upper <branch>` for each higher slice and `--since <commit before your edit>`. Fix each report, or name it at the gate.
 
 After a rebase, or when you take over commits from another session, re-read each commit. Check its content against the current spec and glossary. A patch that applies cleanly can still state an old decision.
 

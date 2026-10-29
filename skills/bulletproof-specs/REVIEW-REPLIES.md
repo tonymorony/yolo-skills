@@ -43,6 +43,8 @@ Done when: every group has a verdict, every decision is recorded, and the change
 - `New OQ-n asks this for <owner>.`
 - One fix that answers several threads: the same reply in each thread.
 
+A reply states only what the diff or a linked ticket holds. A promise for later becomes spec text, an Open Question or a ticket before the reply goes out.
+
 Put `Thanks.` before the reply shape, and keep a neutral tone. When the owner is the reviewer's own role, ask for their view. Do not give the role as the reason. Link every ticket ID: GitHub does not turn Linear IDs into links.
 
 Write replies under the writing rules in `SKILL.md`. A phrase the user asks for in one reply belongs to that reply only.
